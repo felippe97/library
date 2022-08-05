@@ -1,5 +1,8 @@
 package org.library.media.accessimpl;
 
+import java.sql.PreparedStatement;
+import java.util.Map;
+
 /**
  * Implementation of Access object for MediaRepository.getNumberOfMovies.
  *
@@ -7,8 +10,25 @@ package org.library.media.accessimpl;
 public class GetNumberOfMoviesAccessImpl extends GetNumberOfMoviesAccessImplBase {
 
 	public void performExecute() {
-		// TODO Auto-generated method stub
-		throw new UnsupportedOperationException("GetNumberOfMoviesAccessImpl not implemented");
+		 try {
+			    for ( Map.Entry<String,PreparedStatement> entry : getStatements().entrySet() ) {
+			      try {
+			        final PreparedStatement statement = entry.getValue();
+			        checkRowCounts( statement.executeBatch(), statement );
+			      }
+			      catch ( SQLException e ) {
+			        LOG.debug( "SQLException escaped proxy", e );
+			        throw sqlExceptionHelper().convert( e, "could not perform addBatch", entry.getKey() );
+			      }
+			    }
+			  }
+			  catch ( RuntimeException re ) {
+			    LOG.unableToExecuteBatch( re.getMessage() );
+			    throw re;
+			  }
+			  finally {
+			    batchPosition = 0;
 	}
 
+}
 }
