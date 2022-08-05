@@ -3,8 +3,6 @@ package org.library.person.domain;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import org.library.person.domain.Gender;
-import org.library.person.domain.Ssn;
 
 /**
  * Entity representing Person.
