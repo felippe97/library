@@ -1,11 +1,16 @@
 package org.library.media.serviceapi;
 
 import org.junit.Test;
-import org.library.media.serviceapi.PhysicalMediaService;
+
+import org.library.media.domain.PhysicalMedia;
+
 import org.sculptor.framework.test.AbstractDbUnitJpaTests;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.Assert.*;
+
+import java.util.List;
+
 
 /**
  * Spring based transactional test with DbUnit support.
@@ -17,25 +22,33 @@ public class PhysicalMediaServiceTest extends AbstractDbUnitJpaTests implements 
 
 	@Test
 	public void testFindById() throws Exception {
-		// TODO Auto-generated method stub
-		fail("testFindById not implemented");
+		PhysicalMedia media = physicalMediaService.findById(getServiceContext(), 14L);
+		assertNotNull(media);
 	}
 
 	@Test
 	public void testFindAll() throws Exception {
-		// TODO Auto-generated method stub
-		fail("testFindAll not implemented");
+	List<PhysicalMedia> media = physicalMediaService.findAll(getServiceContext());
+	assertNotNull(media);
+	
 	}
 
 	@Test
 	public void testSave() throws Exception {
-		// TODO Auto-generated method stub
-		fail("testSave not implemented");
+		PhysicalMedia media = physicalMediaService.findById(getServiceContext(), 14L);
+		assertNotNull(media);
+		media.setVersion(15L);
+		physicalMediaService.save(getServiceContext(), media);
+		PhysicalMedia media1 = physicalMediaService.findById(getServiceContext(), 14L);
+		assertEquals("Zem", media1.getVersion());
 	}
 
 	@Test
 	public void testDelete() throws Exception {
-		// TODO Auto-generated method stub
-		fail("testDelete not implemented");
+		int before = countRowsInTable(PhysicalMedia.class);
+		PhysicalMedia media = physicalMediaService.findById(getServiceContext(), 14L);
+		assertNotNull(media);
+		physicalMediaService.delete(getServiceContext(), media);
+		assertEquals(before - 1, countRowsInTable(PhysicalMedia.class));
 	}
 }
