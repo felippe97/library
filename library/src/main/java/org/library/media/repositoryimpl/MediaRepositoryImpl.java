@@ -41,9 +41,10 @@ public class MediaRepositoryImpl extends MediaRepositoryBase {
 
 	@Override
 	public Map<String, Movie> findMovieByUrlIMDB(Set<String> keys) {
-		Map<ConditionalCriteria> criteria = ConditionalCriteriaBuilder.criteriaFor(Movie.class)
+		List<ConditionalCriteria> criteria = ConditionalCriteriaBuilder.criteriaFor(Movie.class)
 				.withProperty(MovieProperties.urlIMDB()).eq( keys)
 				.build();
+		
 		return  findByCondition(criteria);
 	}
 }
