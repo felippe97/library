@@ -28,8 +28,10 @@ public class LibraryRepositoryImpl extends LibraryRepositoryBase {
 		List<ConditionalCriteria> criteria = ConditionalCriteriaBuilder.criteriaFor(Library.class)
 				.withProperty(LibraryProperties.name()).eq(name).build();
 
-		List<Library> result = findByCondition(criteria);
-		return result.size() > 0 ? result.get(0) : null;
+		
+		List<Library> result = findByCondition(criteria); return result.size() > 0 ?
+		result.get(0) : null;
+		
 
 	}
 }
