@@ -1,0 +1,11 @@
+https://devwithus.com/download-upload-files-with-spring-boot/
+
+https://www.youtube.com/watch?v=GLrlwwyd1gY&t=61s
+
+https://www-codejava-net.translate.goog/coding/swing-application-to-upload-files-to-http-server-with-progress-bar?_x_tr_sl=auto&_x_tr_tl=cs&_x_tr_hl=cs&_x_tr_pto=wapp
+
+https://github.com/jveverka/file-server
+
+https://spring.io/guides/gs/uploading-files/
+
+https://www.vogella.com/tutorials/JavaNetworking/article.html
